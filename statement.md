@@ -13,7 +13,7 @@ For ease of reading the four main steps of the algorithm are indicated as commen
 # Things to try
 
 - Try different number of iterations that the algorithm goes through. 
-For instance with lower numbers MCTS does not manage to collect enough information through random rollouts and the game finishes as win for one of the players.
+For instance with lower numbers MCTS does not manage to collect enough information through random rollouts and the game ends as a win for one of the players.
 - Try different value of the exploration paramenter (currently set to 2).
  For example with higher values the algorithm favours exploration over exploitation which results in relatively higher visit count for suboptimal moves.
 
