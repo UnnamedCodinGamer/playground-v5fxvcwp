@@ -41,7 +41,7 @@ class Node implements Comparable <Node> { // representing the state of the game
 	
 	Node parent;
 	ArrayList<Node> children;
-	int [] gameState;
+	int [] gameState; // represent the board
 	double numVisits, UCTValue, victories, draws, losses = 0;
 	int player; // 0 if o's turn has been played, 1 otherwise;
 	int move; //0-8
