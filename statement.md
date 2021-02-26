@@ -240,7 +240,7 @@ class MCTSBestMoveFinder {
 		}
 		for (Node child: rootNode.children) System.out.println(Arrays.toString(child.gameState) + " " + child.numVisits + " " +child.victories +" "+ child.UCTValue + " " + child.move);
 		bestMove = rootNode.getBestMove();
-		if (bestMove != null) simulator.printGameState2D(bestMove.gameState);
+		simulator.printGameState2D(bestMove.gameState);
 		System.out.println();
 	}
 }
