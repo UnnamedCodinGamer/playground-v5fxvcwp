@@ -187,7 +187,7 @@ class MCTSBestMoveFinder {
 
 	MCTSBestMoveFinder() {
 		
-		this.simulator = new TicTacToeSimulator();
+		simulator = new TicTacToeSimulator();
 	}
 
     Node selectNodeForRollout() { //select
