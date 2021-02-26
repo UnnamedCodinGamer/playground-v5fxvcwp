@@ -10,8 +10,10 @@ To ease the reading the four main steps of the algorithm are indicated as commen
 - basic understanding of MCTS
 - basic understanding of Java
 
+# Things to try
 
-test
+- try different number of iterations that the algorithm goes through. For instance with lower numbers it does not manage to collect enough information through random rollouts and the game finishes as win for one of the players)
+- try different value of the exploration paramenter (currently set to 2). For instance if you set higher values the algorithm favours exploration over exploitation which results in higher visit count for suboptimal moves.
 
 ```java runnable
 // { autofold
@@ -47,7 +49,7 @@ class Node implements Comparable <Node> { // representing the state of the game
 	void setUCTValue() {
 		
 		if (numVisits == 0) UCTValue = Double.MAX_VALUE; // make sure every child is visited at least once
-		else UCTValue = (victories / numVisits) + Math.sqrt(2) * Math.sqrt(Math.log(parent.numVisits) / numVisits);
+		else UCTValue = (victories / numVisits) + 2 * Math.sqrt(Math.log(parent.numVisits) / numVisits);
 	}
 	
 	Node getBestMove() {
