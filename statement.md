@@ -123,7 +123,6 @@ class TicTacToeSimulator {
             if (won == player) {
                 return player;
             }
-			
 			player^=1;
 		}
 	}
@@ -158,7 +157,7 @@ class TicTacToeSimulator {
 		return GAME_CONTINUES;
 	}
 	
-	void generateChildren(Node n) { // expland
+	void generateChildren(Node n) { // expand
 		
 		ArrayList<Integer> moves = getAllpossibleMoves(n.gameState);
 		for (Integer i: moves) {
