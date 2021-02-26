@@ -237,7 +237,7 @@ class MCTSBestMoveFinder {
 			
 		}
 
-        double numVisits = 0; // iterate over the children of the root node and pick as best move the node which had been visited most
+        double numVisits = 0; // iterate over the children of the root node and pick as best move the node which had been visited most often
         for (Node child: rootNode.children) {
             if (child.numVisits > numVisits) {
                 bestMove = child;
