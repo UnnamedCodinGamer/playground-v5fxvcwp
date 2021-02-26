@@ -12,7 +12,7 @@ To ease the reading the four main steps of the algorithm are indicated as commen
 
 # Things to try
 
-- try different number of iterations that the algorithm goes through. For instance with lower numbers it does not manage to collect enough information through random rollouts and the game finishes as win for one of the players)
+- try different number of iterations that the algorithm goes through. For instance with lower numbers it does not manage to collect enough information through random rollouts and the game finishes as win for one of the players.
 - try different value of the exploration paramenter (currently set to 2). For instance if you set higher values the algorithm favours exploration over exploitation which results in higher visit count for suboptimal moves.
 
 ```java runnable
