@@ -22,7 +22,7 @@ For instance with lower numbers it does not manage to collect enough information
 - Try to implement different expansion policy and expand single child at a time - in the current version all children are expanded at once and one of them is picked for rollout.
 Single node expansion is a bit more complicated to implement but saves memory.
 - Try to implement cleverer rollout method - currently the rollout is completely random and the players will take suboptimal moves (for instance miss a victory or miss to block the other player who is about to win). 
-Better rollouts lead to better results.
+Better rollouts lead to better recognition of good moves.
 
 # Notice
 I do not hold a CS degree and am not a professional developer.
