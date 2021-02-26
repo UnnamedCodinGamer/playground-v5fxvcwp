@@ -233,7 +233,7 @@ class MCTSBestMoveFinder {
 
 			Node leafToRollOutFrom = selectNodeForRollout(); // selection / expansion phase
 			int won = simulator.simulateGameFromLeafNode(leafToRollOutFrom); // rollout phase
-			backpropagateRolloutResult(leafToRollOutFrom, won); // backpropagation
+			backpropagateRolloutResult(leafToRollOutFrom, won); // backpropagation phase
 			
 		}
 
