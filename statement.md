@@ -70,7 +70,7 @@ class TicTacToeSimulator {
 	TicTacToeSimulator() {
 		
 		rand = new Random();
-		rand.setSeed(1);
+		rand.setSeed(1); // set seed to enable reliable replays
 		setWinningMoves();
 	}
 	
