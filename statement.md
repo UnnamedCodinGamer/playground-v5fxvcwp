@@ -39,12 +39,12 @@ import java.util.Random;
 
 class Node implements Comparable <Node> { // representing the state of the game
 	
+    int player; // 0 if o's turn has been played, 1 otherwise;
 	Node parent;
+    int [] gameState; // represent the board
+    int move; //0-8
 	ArrayList<Node> children;
-	int [] gameState; // represent the board
 	double numVisits, UCTValue, victories, draws, losses = 0;
-	int player; // 0 if o's turn has been played, 1 otherwise;
-	int move; //0-8
     int winner = TicTacToeSimulator.GAME_CONTINUES; // indicates if node is end game node (game is won, lost or drawn)
 	
 	Node (int pl, Node p, int[] s, int m) {
