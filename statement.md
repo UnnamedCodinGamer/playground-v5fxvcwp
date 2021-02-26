@@ -1,8 +1,8 @@
 # Goal
 
-The goal of this playground is show how the Monte Carlo Tree Search (MCTS) algorithm works, applied to a simple two player game. 
+The goal of this playground is show how the Monte Carlo Tree Search (MCTS) algorithm works, applied to a simple two player game.\n
 It is oriented towards people who are acquainted with the theory of MCTS but experience difficulties implementing it.
-Below is a basic and (hopefully) easy to follow implementation demonstrating the game play of Tic Tac Toe.
+Below is a basic and (hopefully) easy to follow implementation demonstrating the game play of Tic Tac Toe.\n
 For ease of reading the four main steps of the algorithm are indicated as comments in the code.
 
 # Prerequisites to use the code
