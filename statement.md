@@ -17,7 +17,7 @@ For instance with lower numbers it does not manage to collect enough information
 - Try different value of the exploration paramenter (currently set to 2).
  For example with higher values the algorithm favours exploration over exploitation which results in relatively higher visit count for suboptimal moves.
 
-# Things to try to implement differently
+# Things to try to implement 
 
 - Try to implement different expansion policy and expand single child at a time - in the current version all children are expanded at once and one of them is picked for rollout.
 - Try to implement cleverer rollout method - currently the rollout is completely random and the players will take suboptimal moves (for instance miss a victory or miss to block the other player who is about to win). 
