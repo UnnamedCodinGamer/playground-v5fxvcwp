@@ -28,7 +28,7 @@ Better rollouts lead to better recognition of good moves.
 
 # Notice
 
-The code below does not pretend to use best practices in programming or MCTS implementation and can be optimized. This playground is to be perceived as a proof of concept article that demonstrates the working of the algorithm.
+The code below does not pretend to use best practices in programming or MCTS implementation and can be optimized. This playground is to be perceived as a proof of concept example that demonstrates the working of the algorithm.
 
 # Code
 
