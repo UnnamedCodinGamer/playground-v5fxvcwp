@@ -29,7 +29,7 @@ class Node implements Comparable <Node> { // representing the state of the game
 	Node parent;
 	ArrayList<Node> children;
 	int [] gameState;
-	double numVisits, UCTValue, victories = 0;
+	double numVisits, UCTValue, victories, draws, losses = 0;
 	int player; // 0 if o's turn has been played, 1 otherwise;
 	int move; //0-8
     int winner = TicTacToeSimulator.GAME_CONTINUES; // indicates if node is end game node (game is won, lost or drawn)
@@ -51,7 +51,7 @@ class Node implements Comparable <Node> { // representing the state of the game
 	void setUCTValue() {
 		
 		if (numVisits == 0) UCTValue = Double.MAX_VALUE; // make sure every child is visited at least once
-		else UCTValue = (victories / numVisits) + 2 * Math.sqrt(Math.log(parent.numVisits) / numVisits);
+		else  UCTValue = ((victories+draws) / numVisits) + Math.sqrt(2) * Math.sqrt(Math.log(parent.numVisits) / numVisits);
 	}
 }
 
@@ -206,10 +206,10 @@ class MCTSBestMoveFinder {
         Node current = n;   
         while (current != null) {
             current.numVisits++;
-            if (won == simulator.DRAW) current.victories+=0.5;
+            if (won == simulator.DRAW) current.draws+=0.5;
             else if (current.player == won) {
                 current.victories+=1;
-            } 
+            } else current.losses+=1;
             current = current.parent;
 		}
     }
@@ -231,7 +231,7 @@ class MCTSBestMoveFinder {
                 numVisits = child.numVisits;
             }
         }
-        for (Node child: rootNode.children) System.out.println(Arrays.toString(child.gameState) + " " + child.numVisits + " " +child.victories +" "+ child.UCTValue + " " + child.move);
+        for (Node child: rootNode.children) System.out.println(Arrays.toString(child.gameState) + " " + child.numVisits + " " +child.victories +" "+child.draws+" "+ child.losses +" "+ child.UCTValue + " " + child.move);
 		System.out.println();
         simulator.printGameState2D(bestMove.gameState);
 		System.out.println();
