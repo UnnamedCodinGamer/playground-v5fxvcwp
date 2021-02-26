@@ -25,7 +25,7 @@ Single node expansion is a bit more complicated to implement but saves memory.
 Better rollouts lead to better results.
 
 # Notice
-
+I do not hold a CS degree and am not a professional developer.
 The code below does not pretend to use best practices in programming or MCTS implementation and can be optimized. This playground is to be perceived as a proof of concept writeup that demonstrates the working of the algorithm.
 
 # Code
