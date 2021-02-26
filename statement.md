@@ -30,9 +30,9 @@ class Node implements Comparable <Node> { // representing the state of the game
 	double numVisits, UCTValue, victories = 0;
 	int player; // 0 if o's turn has been played, 1 otherwise;
 	int move; //0-8
-    int winner = TicTacToeSimulator.GAME_CONTINUES;
+    int winner = TicTacToeSimulator.GAME_CONTINUES; // indicates if node is end game node (game is won, lost or drawn)
 	
-	Node(int pl, Node p, int[] s, int m) {
+	Node (int pl, Node p, int[] s, int m) {
 		player = pl;
 		parent = p;
 		gameState = s;
@@ -41,7 +41,7 @@ class Node implements Comparable <Node> { // representing the state of the game
 	}
 	
 	@Override
-	public int compareTo(Node other) {
+	public int compareTo(Node other) { // sort nodes in descending order according to UCT value
 		
 		return Double.compare(other.UCTValue, UCTValue);
 	}
@@ -50,20 +50,6 @@ class Node implements Comparable <Node> { // representing the state of the game
 		
 		if (numVisits == 0) UCTValue = Double.MAX_VALUE; // make sure every child is visited at least once
 		else UCTValue = (victories / numVisits) + 2 * Math.sqrt(Math.log(parent.numVisits) / numVisits);
-	}
-	
-	Node getBestMove() {
-		
-		double numVisits = 0;
-		Node bestMove = null;
-		for (Node child: children) {
-			if (child.numVisits > numVisits) {
-				bestMove = child;
-				numVisits = child.numVisits;
-			}
-		}
-		if (bestMove == null) System.out.println("game won");
-		return bestMove;
 	}
 }
 
@@ -101,35 +87,27 @@ class TicTacToeSimulator {
 	
 	int simulateGameFromLeafNode(Node n) { // do rollout
 		
-		int won = checkWinOrDraw(n.gameState, n.player); 
-		if (won != GAME_CONTINUES) return won; // check if game is won and node is terminal
+		if (n.winner != GAME_CONTINUES) return n.winner; // check if game is won and node is terminal
 		int player = n.player^1; // whose player's turn it is to make a move
 		int [] currentGameState = n.gameState.clone();
 		ArrayList<Integer> moves = new ArrayList<Integer>();
 	
-		while (true) {
+		while (true) { // simulate a random game
+
 			moves.clear();
 			moves = getAllpossibleMoves(currentGameState);
 			if (moves.isEmpty()) {
-				return DRAW; // draw
-			}
-			
-			for (Integer m: moves) {
-				int [] newGameState = currentGameState.clone();
-				newGameState[m] = player;
-				won = checkWinOrDraw(newGameState, player);
-				if (won == player) {
-					return player;
-				}
-				
-			}
-			
+				return DRAW; 
+            }
 			int randomMoveIndex = rand.nextInt(moves.size());
 			int moveToMake = moves.get(randomMoveIndex);
 			currentGameState[moveToMake] = player;
+            int won = checkWinOrDraw(currentGameState, player);
+            if (won == player) {
+                return player;
+            }
 			
 			player^=1;
-			
 		}
 	}
 	
@@ -157,7 +135,7 @@ class TicTacToeSimulator {
 			}
 			if (n == 3) return player;
 		}
-	
+
 		ArrayList<Integer> moves = getAllpossibleMoves(gameState);
 		if (moves.isEmpty()) return DRAW;
 		
@@ -171,6 +149,7 @@ class TicTacToeSimulator {
 			int [] nextGameState = n.gameState.clone();
 			nextGameState[i] = n.player^1;
 			Node child = new Node(n.player^1, n, nextGameState, i);
+            child.winner = checkWinOrDraw(child.gameState, child.player); // check if child is end game node
 			n.children.add(child);
 		}
 	}
@@ -204,11 +183,10 @@ class MCTSBestMoveFinder {
 		while (true) {
 			
 	        if (currentNode.children.isEmpty()) {
-	        	int won = simulator.checkWinOrDraw(currentNode.gameState, currentNode.player); // check if game is won and node is terminal - no need to expand terminal node
-        		if (won != simulator.GAME_CONTINUES) return currentNode;
+	        	 
+        		if (currentNode.winner != TicTacToeSimulator.GAME_CONTINUES) return currentNode; // check if game is won and node is terminal - no need to expand terminal node
 	        	simulator.generateChildren(currentNode);
-	        	currentNode = currentNode.children.get(0);
-	        	return currentNode;
+	        	return currentNode.children.get(0);
 	        } else {
 	        	for (Node child: currentNode.children) {
 	        		child.setUCTValue();
@@ -222,25 +200,39 @@ class MCTSBestMoveFinder {
 		}
 	}
 
+    void backpropagateRolloutResult(Node n, int won) { // backpropagate
+
+        Node current = n;   
+        while (current != null) {
+            current.numVisits++;
+            if (won == simulator.DRAW) current.victories+=0.5;
+            else if (current.player == won) {
+                current.victories+=1;
+            } 
+            current = current.parent;
+		}
+    }
+
 	void findBestMove(int numIterations) {
 		
 		for (int i = 0; i < numIterations; i++) {
-			Node leafToRollOutFrom = this.selectNodeForRollout();
-			int won = simulator.simulateGameFromLeafNode(leafToRollOutFrom);
+
+			Node leafToRollOutFrom = selectNodeForRollout(); // selection / expansion phase
+			int won = simulator.simulateGameFromLeafNode(leafToRollOutFrom); // rollout phase
+			backpropagateRolloutResult(leafToRollOutFrom, won); // backpropagation
 			
-			Node current = leafToRollOutFrom;   // backpropagate
-			while(current != null) {
-				current.numVisits++;
-				if (won == simulator.DRAW) current.victories+=0.5;
-				else if (current.player == won) {
-					current.victories+=1;
-				} 
-				current = current.parent;
-			}
 		}
-		for (Node child: rootNode.children) System.out.println(Arrays.toString(child.gameState) + " " + child.numVisits + " " +child.victories +" "+ child.UCTValue + " " + child.move);
-		bestMove = rootNode.getBestMove();
-		simulator.printGameState2D(bestMove.gameState);
+
+        double numVisits = 0; // iterate over the children of the root node and pick as best move the node which had been visited most
+        for (Node child: rootNode.children) {
+            if (child.numVisits > numVisits) {
+                bestMove = child;
+                numVisits = child.numVisits;
+            }
+        }
+        for (Node child: rootNode.children) System.out.println(Arrays.toString(child.gameState) + " " + child.numVisits + " " +child.victories +" "+ child.UCTValue + " " + child.move);
+		System.out.println();
+        simulator.printGameState2D(bestMove.gameState);
 		System.out.println();
 	}
 }
@@ -250,7 +242,7 @@ class Main {
 	public static void main(String[] args) {
 
 		MCTSBestMoveFinder f = new MCTSBestMoveFinder();
-		int numberOfIterations = 200;
+		int numberOfIterations = 1000;
 
 		int [] initGameState = new int [9];
 		Arrays.fill(initGameState, TicTacToeSimulator.EMPTY);
@@ -261,8 +253,12 @@ class Main {
 			if (iter == 0) {
 				f.rootNode = new Node(TicTacToeSimulator.O, null, initGameState, -1);
 			} else {
-				if (f.bestMove == null) break;
-				f.rootNode = new Node(f.bestMove.player, null, f.bestMove.gameState, f.bestMove.move);
+                int won = f.simulator.checkWinOrDraw(f.bestMove.gameState, f.bestMove.player);
+                if (won == TicTacToeSimulator.O || won == TicTacToeSimulator.X) {
+                    System.out.println("suboptimal game, increase the number of iterations");
+					break;
+				}
+                f.rootNode = new Node(f.bestMove.player, null, f.bestMove.gameState, f.bestMove.move);
 			}
 			if (!f.simulator.getAllpossibleMoves(f.rootNode.gameState).isEmpty()) f.findBestMove(numberOfIterations);
 			else break;
@@ -271,7 +267,6 @@ class Main {
 	}
 }
 
-//}
 ```
 
 
