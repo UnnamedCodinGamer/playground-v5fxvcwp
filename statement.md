@@ -43,7 +43,7 @@ class Node implements Comparable <Node> { // representing the state of the game
 	}
 	
 	@Override
-	public int compareTo(Node other) { // sort nodes in descending order according to UCT value
+	public int compareTo(Node other) { // sort nodes in descending order according to their UCT value
 		
 		return Double.compare(other.UCTValue, UCTValue);
 	}
@@ -117,7 +117,6 @@ class TicTacToeSimulator {
 		
 		ArrayList<Integer> allPossibleMoves = new ArrayList<Integer>(9);
 		for (int row = 0; row < gameState.length; row++) {
-			
 			if (gameState[row] == EMPTY) {
 				allPossibleMoves.add(row);
 			}
