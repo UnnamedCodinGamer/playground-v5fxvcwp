@@ -5,6 +5,11 @@ It is oriented towards people who are acquainted with the theory of MCTS but exp
 Below is a basic and (hopefully) easy to follow implementation demonstrating the game play of Tic Tac Toe.
 For ease of reading the four main steps of the algorithm are indicated as comments in the code.
 
+# Prerequisits to use the code
+
+- basic understanding of MCTS
+- basic understanding of Java
+
 
 test
 
