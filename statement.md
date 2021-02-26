@@ -181,10 +181,10 @@ class TicTacToeSimulator {
 
 class MCTSBestMoveFinder {
 	
-	Node rootNode;
 	TicTacToeSimulator simulator;
+    Node rootNode;
 	Node bestMove;
-	
+
 	MCTSBestMoveFinder() {
 		
 		this.simulator = new TicTacToeSimulator();
