@@ -12,7 +12,7 @@ For ease of reading the four main steps of the algorithm are indicated as commen
 
 # Things to try to implement 
 
-- Try to implement different expansion policy and expand single child at a time - in the current version all children are expanded at once and one of them is picked for rollout.
+- Try to implement different expansion policy and expand single child at a time - in the current version all children are expanded at once.
 Single node expansion saves memory.
 
 - Try to implement cleverer rollout method - currently the rollout is completely random and the players will take suboptimal moves (for instance miss a victory or miss to block the other player who is about to win). 
