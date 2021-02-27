@@ -10,14 +10,6 @@ For ease of reading the four main steps of the algorithm are indicated as commen
 - understanding of MCTS
 - Java
 
-# Things to try
-
-- Try different number of iterations that the algorithm goes through. 
-For instance with lower numbers MCTS does not manage to collect enough information through random rollouts and the game ends as a win for one of the players.
-
-- Try different value of the exploration paramenter.
- For example with higher values the algorithm favours exploration over exploitation i.e. higher visit count for suboptimal moves.
-
 # Things to try to implement 
 
 - Try to implement different expansion policy and expand single child at a time - in the current version all children are expanded at once and one of them is picked for rollout.
