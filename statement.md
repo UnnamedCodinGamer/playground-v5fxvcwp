@@ -10,7 +10,9 @@ For ease of reading the four main steps of the algorithm are indicated as commen
 - understanding of MCTS
 - Java
 
-# Things to try to implement 
+# Things to try/implement 
+
+- Try different iteration count - with lower number of iterations the algorithm can not collect enough info from the random rollouts which leads to a win for one of the players.
 
 - Try to implement different expansion policy and expand single child at a time - in the current version all children are expanded at once.
 Single node expansion saves memory.
