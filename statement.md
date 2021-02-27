@@ -22,7 +22,7 @@ Single node expansion saves memory.
 
 # Notice
 
-The code below does not pretend to use best practices in programming or MCTS implementation. This playground is to be perceived as a proof of concept example that demonstrates how the algorithm works.
+The code below does not use best practices in programming or MCTS implementation. This playground is to be perceived as a proof of concept example that demonstrates how the algorithm works.
 You can use the code freely, for instance applying it to some of the two player games at codingames.com.
 Let me know if you encounter any bugs or mistakes.
 # Code
