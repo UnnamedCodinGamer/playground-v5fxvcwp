@@ -58,7 +58,7 @@ class Node implements Comparable <Node> { // representing the state of the game
 	void setUCTValue() {
 		
 		if (numVisits == 0) UCTValue = Double.MAX_VALUE; // make sure every child is visited at least once
-		else  UCTValue = ((victories+draws) / numVisits) + Math.sqrt(2) * Math.sqrt(Math.log(parent.numVisits) / numVisits);
+		else  UCTValue = ((victories+draws/2) / numVisits) + 2 * Math.sqrt(Math.log(parent.numVisits) / numVisits);
 	}
 }
 
