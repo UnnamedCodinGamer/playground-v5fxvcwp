@@ -212,7 +212,7 @@ class MCTSBestMoveFinder {
         Node current = n;   
         while (current != null) {
             current.numVisits++;
-            if (won == simulator.DRAW) current.draws+=0.5;
+            if (won == simulator.DRAW) current.draws+=1;
             else if (current.player == won) {
                 current.victories+=1;
             } else current.losses+=1;
