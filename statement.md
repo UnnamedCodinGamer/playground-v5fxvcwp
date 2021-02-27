@@ -16,15 +16,15 @@ For ease of reading the four main steps of the algorithm are indicated as commen
 For instance with lower numbers MCTS does not manage to collect enough information through random rollouts and the game ends as a win for one of the players.
 
 - Try different value of the exploration paramenter.
- For example with higher values the algorithm favours exploration over exploitation which results in higher visit count for suboptimal moves.
+ For example with higher values the algorithm favours exploration over exploitation i.e. higher visit count for suboptimal moves.
 
 # Things to try to implement 
 
 - Try to implement different expansion policy and expand single child at a time - in the current version all children are expanded at once and one of them is picked for rollout.
-Single node expansion is a bit more complicated to implement but saves memory.
+Single node expansion saves memory.
 
 - Try to implement cleverer rollout method - currently the rollout is completely random and the players will take suboptimal moves (for instance miss a victory or miss to block the other player who is about to win). 
-Better rollouts lead to better recognition of good moves.
+Higher quality rollouts lead to better recognition of good moves.
 
 # Notice
 
