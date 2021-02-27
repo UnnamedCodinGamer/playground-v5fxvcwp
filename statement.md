@@ -8,7 +8,7 @@ For ease of reading the four main steps of the algorithm are indicated as commen
 # Prerequisites to use the code
 
 - basic understanding of MCTS
-- basic Java
+- basic Java skills
 
 # Things to try / implement 
 
