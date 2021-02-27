@@ -20,7 +20,7 @@ For ease of reading the four main steps of the algorithm are indicated as commen
 
 # Notice
 
-The code below does not use best practices in programming or MCTS implementation. This playground is to be perceived as a proof of concept example that demonstrates how the algorithm works.
+The code below does not use best practices in programming or MCTS implementation. This playground is to be perceived as a proof of concept example of how the algorithm works.
 You can use the code freely, for instance applying an optimized version to other two player games.
 Let me know if you encounter bugs or mistakes.
 # Code
