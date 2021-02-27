@@ -14,7 +14,7 @@ For ease of reading the four main steps of the algorithm are indicated as commen
 
 - Try different iteration count - with lower number of iterations the algorithm can not collect enough info from the random rollouts which leads to a win for one of the players.
 
-- Try to implement cleverer rollout method - currently the rollout is completely random and the players will take suboptimal moves.
+- Try to implement a cleverer rollout method - currently the rollout is completely random and the players will take suboptimal moves.
 
 - Try to implement different expansion policy and expand single child at a time, which is memory efficient.
 
