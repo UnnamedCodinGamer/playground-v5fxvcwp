@@ -5,24 +5,11 @@ It is oriented towards people who are acquainted with the theory of MCTS but exp
 Below is a basic and (hopefully) easy to follow implementation demonstrating the game play of Tic Tac Toe.
 For ease of reading the four main steps of the algorithm are indicated as comments in the code.
 
-# Prerequisites to use the code
-
-- basic understanding of MCTS
-- basic Java skills
-
-# Things to try / implement 
-
-- Try different iteration count - with lower number of iterations the algorithm can not collect enough info from the random rollouts which leads to a win for one of the players.
-
-- Try to implement a cleverer rollout method - currently the rollout is completely random and the players will take suboptimal moves.
-
-- Try to implement different expansion policy and expand single child at a time, which is memory efficient.
-
 # Notice
 
 The code below does not use best practices in programming or MCTS implementation. This playground is to be perceived as a proof of concept example of how the algorithm works.
-You can use the code freely, for instance applying an optimized version to other two player games.
-Let me know if you encounter bugs or mistakes.
+If you want you can contribute by making the code more accessible by restructuring it or by translating it to other languages.
+Let me know if you come across bugs or implementation mistakes.
 # Code
 
 ```java runnable
@@ -78,7 +65,7 @@ class TicTacToeSimulator {
 	TicTacToeSimulator() {
 		
 		rand = new Random();
-		rand.setSeed(1); // set seed to enable reliable replays
+		rand.setSeed(1);
 		setWinningMoves();
 	}
 	
