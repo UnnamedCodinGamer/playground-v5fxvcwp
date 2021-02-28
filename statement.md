@@ -248,8 +248,8 @@ class Main {
 			if (iter == 0) {
 				f.rootNode = new Node(TicTacToeSimulator.O, null, initGameState, -1);
 			} else {
-                int won = f.simulator.checkWinOrDraw(f.bestMove.gameState, f.bestMove.player);
-                if (won == TicTacToeSimulator.O || won == TicTacToeSimulator.X) {
+                
+                if (f.bestMove.winner == TicTacToeSimulator.O || f.bestMove.winner == TicTacToeSimulator.X) {
                     System.out.println("suboptimal game, increase the number of iterations");
 					break;
 				}
