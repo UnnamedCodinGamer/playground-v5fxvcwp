@@ -9,7 +9,7 @@ For ease of reading the four main steps of the algorithm are indicated as commen
 
 The code below does not use best practices in programming or MCTS implementation. This playground is to be perceived as a proof of concept example of how the algorithm works.
 If you want you can contribute by making the code more accessible by restructuring it or by translating it to other languages.
-Let me know if you come across bugs or implementation mistakes.
+
 # Code
 
 ```java runnable
