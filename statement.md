@@ -177,9 +177,9 @@ class MCTSBestMoveFinder {
 	
 		while (true) {
 			
+            if (currentNode.winner != TicTacToeSimulator.GAME_CONTINUES) return currentNode; // if terminal node is selected return it for scoring
 	        if (currentNode.children.isEmpty()) {
 	        	 
-        		if (currentNode.winner != TicTacToeSimulator.GAME_CONTINUES) return currentNode; // check if game is won and node is terminal - no need to expand terminal node
 	        	simulator.generateChildren(currentNode);
 	        	return currentNode.children.get(0);
 	        } else {
