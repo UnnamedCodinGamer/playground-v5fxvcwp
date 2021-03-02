@@ -120,7 +120,7 @@ class TicTacToeSimulator {
 	
 	int checkWinOrDraw(int [] gameState, int player) {
 		
-		forLoop1: for (ArrayList<Integer> w: this.winningMoves) {
+		forLoop1: for (ArrayList<Integer> w: winningMoves) {
 			int n = 0;
 			for (Integer index: w) {
 				
