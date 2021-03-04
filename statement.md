@@ -99,6 +99,7 @@ class TicTacToeSimulator {
             int won = checkWinOrDraw(currentGameState, player);
             if (won != GAME_CONTINUES) return won;
 			player^=1;
+            
 		}
 	}
 	
