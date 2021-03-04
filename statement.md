@@ -97,9 +97,7 @@ class TicTacToeSimulator {
 			int moveToMake = moves.get(randomMoveIndex);
 			currentGameState[moveToMake] = player;
             int won = checkWinOrDraw(currentGameState, player);
-            if (won != GAME_CONTINUES) {
-                return won;
-            }
+            if (won != GAME_CONTINUES) return won;
 			player^=1;
 		}
 	}
