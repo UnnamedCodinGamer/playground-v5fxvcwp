@@ -93,15 +93,12 @@ class TicTacToeSimulator {
 
 			moves.clear();
 			moves = getAllpossibleMoves(currentGameState);
-			if (moves.isEmpty()) {
-				return DRAW; 
-            }
 			int randomMoveIndex = rand.nextInt(moves.size());
 			int moveToMake = moves.get(randomMoveIndex);
 			currentGameState[moveToMake] = player;
             int won = checkWinOrDraw(currentGameState, player);
-            if (won == player) {
-                return player;
+            if (won != GAME_CONTINUES) {
+                return won;
             }
 			player^=1;
 		}
