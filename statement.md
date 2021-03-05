@@ -87,12 +87,12 @@ class TicTacToeSimulator {
 		if (n.winner != GAME_CONTINUES) return n.winner; // check if game is won and node is terminal
 		int player = n.player^1; // whose player's turn it is to make a move
 		int [] currentGameState = n.gameState.clone();
-		ArrayList<Integer> moves = new ArrayList<Integer>();
-	
+		
+
 		while (true) { // simulate a random game
 
-			moves.clear();
-			moves = getAllpossibleMoves(currentGameState);
+			
+			ArrayList<Integer> moves = getAllpossibleMoves(currentGameState);
 			int randomMoveIndex = rand.nextInt(moves.size());
 			int moveToMake = moves.get(randomMoveIndex);
 			currentGameState[moveToMake] = player;
