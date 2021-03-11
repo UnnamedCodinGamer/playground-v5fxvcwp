@@ -133,18 +133,6 @@ class TicTacToeSimulator {
 		return GAME_CONTINUES;
 	}
 	
-	void generateChildren(Node n) { // expand
-		
-		ArrayList<Integer> moves = getAllpossibleMoves(n.gameState);
-		for (Integer i: moves) {
-			int [] nextGameState = n.gameState.clone();
-			nextGameState[i] = n.player^1;
-			Node child = new Node(n.player^1, n, nextGameState, i);
-            child.winner = checkWinOrDraw(child.gameState, child.player); // check if child is end game node
-			n.children.add(child);
-		}
-	}
-	
 	void printGameState2D(int[] gameState) {
 		
 		for (int i = 1; i < gameState.length+1; i++) {
@@ -176,7 +164,7 @@ class MCTSBestMoveFinder {
             if (currentNode.winner != TicTacToeSimulator.GAME_CONTINUES) return currentNode; // if terminal node is selected return it for scoring
 	        if (currentNode.children.isEmpty()) {
 	        	 
-	        	simulator.generateChildren(currentNode);
+	        	generateChildren(currentNode);
 	        	return currentNode.children.get(0);
 	        } else {
 	        	for (Node child: currentNode.children) {
@@ -188,6 +176,18 @@ class MCTSBestMoveFinder {
 	        		return currentNode;
 	        	} 
 	        }
+		}
+	}
+
+    void generateChildren(Node n) { // expand
+		
+		ArrayList<Integer> moves = simulator.getAllpossibleMoves(n.gameState);
+		for (Integer i: moves) {
+			int [] nextGameState = n.gameState.clone();
+			nextGameState[i] = n.player^1;
+			Node child = new Node(n.player^1, n, nextGameState, i);
+            child.winner = simulator.checkWinOrDraw(child.gameState, child.player); // check if child is end game node
+			n.children.add(child);
 		}
 	}
 
